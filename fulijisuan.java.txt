@@ -1,0 +1,30 @@
+package fulijisan;
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+
+public class fulijisuan1 {
+	public static void main(String[] args){	
+		    System.out.println("F=money*(1+rate)^years");
+			System.out.print("Please input rate and years:");
+			String[] input = new Scanner(System.in).nextLine().trim().split("\\s+");
+			BigDecimal num1 = new BigDecimal(input[0]);
+			int num2 = Integer.parseInt(input[1]);
+			BigDecimal mul = new BigDecimal("1.0");
+			for(int i  = 1; i <= num2; i++){
+				mul = mul.multiply(num1);
+			}
+			System.out.println("(1+rate)^years= "+mul.toString());
+	
+			double a;
+			double b;
+			Scanner scanner =new Scanner(System.in);
+			System.out.printf("Please input money and (1+rate)^years:" );
+			a=scanner.nextDouble();
+			b=scanner.nextDouble();
+			System.out.println("F= "+(a*b));
+	}
+
+}
+
+ 
