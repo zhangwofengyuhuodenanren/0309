@@ -1,30 +1,60 @@
 package fulijisan;
-import java.math.BigDecimal;
 import java.util.Scanner;
 
-
 public class fulijisuan1 {
-	public static void main(String[] args){	
-		    System.out.println("F=money*(1+rate)^years");
-			System.out.print("Please input rate and years:");
-			String[] input = new Scanner(System.in).nextLine().trim().split("\\s+");
-			BigDecimal num1 = new BigDecimal(input[0]);
-			int num2 = Integer.parseInt(input[1]);
-			BigDecimal mul = new BigDecimal("1.0");
-			for(int i  = 1; i <= num2; i++){
-				mul = mul.multiply(num1);
-			}
-			System.out.println("(1+rate)^years= "+mul.toString());
-	
-			double a;
-			double b;
-			Scanner scanner =new Scanner(System.in);
-			System.out.printf("Please input money and (1+rate)^years:" );
-			a=scanner.nextDouble();
-			b=scanner.nextDouble();
-			System.out.println("F= "+(a*b));
-	}
-
+public static void main(String[] args){	
+	int choise;
+	Scanner scanner =new Scanner(System.in);
+	do{System.out.print("请输入数字：1：求总额；2：求本金");
+	choise=scanner.nextInt();
+	}while(choise!=1&&choise!=2);
+double rate;
+double years;
+double money1;
+double money2;
+//Scanner scanner =new Scanner(System.in);
+if(choise==1){
+System.out.print("请输入利率:");
+rate=scanner.nextDouble();
+System.out.print("请输入年期:");
+years=scanner.nextDouble();	
+System.out.printf("请输入本金:" );
+money1=scanner.nextDouble();
+money2=money1;
+{
+for(int i  = 1; i <= years; i++)
+{
+money1*=(1+rate);	
+}
+System.out.println("复利总额="+money1 );
 }
 
- 
+money2*=(1+rate*years);
+
+System.out.println("单利总额="+money2 );
+}
+
+if(choise==2){
+	System.out.print("请输入利率:");
+	rate=scanner.nextDouble();
+	System.out.print("请输入年期:");
+	years=scanner.nextDouble();	
+	System.out.printf("请输入总额:" );
+	money1=scanner.nextDouble();
+	money2=money1;
+	for(int i  = 1; i <= years; i++)
+	{
+	money1/=(1+rate);	
+	}
+	System.out.println("复利本金="+money1 );
+	
+    money2/=(1+rate*years);
+
+     System.out.println("单利本金="+money2);
+}
+	
+	
+
+}
+}
+
