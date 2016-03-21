@@ -3,103 +3,134 @@ import java.util.Scanner;
 
 public class fulijisuan1 {
 public static void main(String[] args){	
-int choise;
-Scanner scanner =new Scanner(System.in);
-do{System.out.print("请输入数字：1：求总额；2：求本金;3:求年期;4:求利率;5:利滚利");
-choise=scanner.nextInt();
-}while(choise!=1&&choise!=2&&choise!=3&&choise!=4&&choise!=5);
-double rate = 0;
-double years;
-double money1;
-double money2 = 0;
-double money3;
-//Scanner scanner =new Scanner(System.in);
-if(choise==1){
-System.out.println("您要求的是总额");
-System.out.print("请输入利率:");
-rate=scanner.nextDouble();
-System.out.print("请输入年期:");
-years=scanner.nextDouble();	
-System.out.printf("请输入本金:" );
-money1=scanner.nextDouble();
-money2=money1;
-{
-for(int i = 1; i <= years; i++)
-{
-money1*=(1+rate);	
-}
-System.out.println("复利总额="+Math.round(money1) );
-}
-money2*=(1+rate*years);
-System.out.println("单利总额="+Math.round(money2) );
-}
-if(choise==2){
-System.out.println("您要求的是本金");
-System.out.print("请输入利率:");
-rate=scanner.nextDouble();
-System.out.print("请输入年期:");
-years=scanner.nextDouble();	
-System.out.printf("请输入总额:" );
-money1=scanner.nextDouble();
-money2=money1;
-for(int i = 1; i <= years; i++)
-{
-money1/=(1+rate);	
-}
-System.out.println("复利本金="+Math.round(money1) );
+	int choise;
+	Scanner scanner =new Scanner(System.in);
+	do{System.out.print("请输入数字：1：求总额；2：求本金;3:求年期;4:求利率;5:若连本带利投资，最后得到的资产总值6：若投资本金每年不变，最后得到的资产总值;7:银行贷款");
+	choise=scanner.nextInt();
+	}while(choise!=1&&choise!=2&&choise!=3&&choise!=4&&choise!=5&&choise!=6&&choise!=7);
+	double rate = 0;
+	double years;
+	double money1;
+	double money2 = 0;
+	double months;
+	//Scanner scanner =new Scanner(System.in);
+	if(choise==1){
+	System.out.println("您要求的是总额");
+	System.out.print("请输入利率:");
+	rate=scanner.nextDouble();
+	System.out.print("请输入年期:");
+	years=scanner.nextDouble();	
+	System.out.printf("请输入本金:" );
+	money1=scanner.nextDouble();
+	money2=money1;
+	{
+	for(int i = 1; i <= years; i++)
+	{
+	money1*=(1+rate);	
+	}
+	System.out.println("复利总额="+Math.round(money1) );
+	}
+	money2*=(1+rate*years);
+	System.out.println("单利总额="+Math.round(money2) );
+	}
+	if(choise==2){
+	System.out.println("您要求的是本金");
+	System.out.print("请输入利率:");
+	rate=scanner.nextDouble();
+	System.out.print("请输入年期:");
+	years=scanner.nextDouble();	
+	System.out.printf("请输入总额:" );
+	money1=scanner.nextDouble();
+	money2=money1;
+	for(int i = 1; i <= years; i++)
+	{
+	money1/=(1+rate);	
+	}
+	System.out.println("复利本金="+Math.round(money1) );
 
-money2/=(1+rate*years);
+	money2/=(1+rate*years);
 
-System.out.println("单利本金="+Math.round(money2) );
+	System.out.println("单利本金="+Math.round(money2) );
 
-}
-double d;
-double e = 0;
-if(choise==3){
-System.out.println("您要求的是年期");
-System.out.print("请输入利率：");
-rate=scanner.nextDouble();
-System.out.print("请输入本金：");
-money1=scanner.nextDouble();
-System.out.print("请输入总额：");
-money2=scanner.nextDouble();
-d=money2/money1;	
-e = Math.log(d)/Math.log(1+rate);	
-System.out.println("年期="+Math.round(e) );
-return;
-}
-double a;
-double c;
-if(choise==4){
-System.out.println("您要求的是利率");
-System.out.print("请输入年期：");
-years=scanner.nextDouble();
-System.out.print("请输入本金：");
-money1=scanner.nextDouble();
-System.out.print("请输入总额：");
-money2=scanner.nextDouble();
-a=money2/money1;
-double b=java.lang.Math.pow(a,1/years);//a的1/3次方;
-c = b-1;
-System.out.println("利率="+c );
-}
-if(choise==5){
-	System.out.println("您要求的是利滚利");
+	}
+	double d;
+	double e = 0;
+	if(choise==3){
+	System.out.println("您要求的是年期");
+	System.out.print("请输入利率：");
+	rate=scanner.nextDouble();
+	System.out.print("请输入本金：");
+	money1=scanner.nextDouble();
+	System.out.print("请输入总额：");
+	money2=scanner.nextDouble();
+	d=money2/money1;	
+	e = Math.log(d)/Math.log(1+rate);	
+	System.out.println("年期="+Math.round(e) );
+	return;
+	}
+	double a;
+	double c;
+	if(choise==4){
+	System.out.println("您要求的是利率");
+	System.out.print("请输入年期：");
+	years=scanner.nextDouble();
+	System.out.print("请输入本金：");
+	money1=scanner.nextDouble();
+	System.out.print("请输入总额：");
+	money2=scanner.nextDouble();
+	a=money2/money1;
+	double b=java.lang.Math.pow(a,1/years);//a的1/3次方;
+	c = b-1;
+	System.out.println("利率="+c );
+	}
+	if(choise==5){
+	System.out.println("您要求的是若连本带利投资，最后得到的资产总值");
 	System.out.print("请输入年期：");
 	years=scanner.nextDouble();
 	System.out.print("请输入本金：");
 	money1=scanner.nextDouble();
 	System.out.print("请输入利率：");
 	rate=scanner.nextDouble();
-	money2=money1;
+	money2=0;	
 	for(int i=1;i<=years;i++)
 	{
-		money1*=rate;//利息
-		money3=money1+money2;//本金+利息
-		money1=money3;
-		money2=money3;
+	money2=money1*(1+rate)*1;
+	money1=money2; 
 	}
-	System.out.println("利滚利="+money2 );
-}
-}
-}
+
+	System.out.println("若连本带利投资，最后得到的资产总值为："+money2 );
+	}
+	if(choise==6){
+	System.out.println("若投资本金每年不变，最后得到的资产总值");
+	System.out.print("请输入年期：");
+	years=scanner.nextDouble();
+	System.out.print("请输入本金：");
+	money1=scanner.nextDouble();
+	System.out.print("请输入利率：");
+	rate=scanner.nextDouble();
+	money2=money1*(1+rate)*years;
+	System.out.println("若投资本金每年不变，最后得到的资产总值为："+money2 );
+	}
+	if(choise==7){
+	double m=1;
+	double monthrate=0;
+	System.out.println("您要贷款，求需要每月还款多少");
+	System.out.print("请输入还款时间(年)：");
+	years=scanner.nextDouble();
+	System.out.print("请输入贷款本金：");
+	money1=scanner.nextDouble();
+	System.out.print("请输入年利率：");
+	rate=scanner.nextDouble();
+	monthrate=rate/12;
+	System.out.println("月利率为"+monthrate);
+	months=12*years;
+	System.out.println("还款月数为"+months);
+	for(int i=1;i<=months;i++)
+	{
+		m*=(1+monthrate);
+	}
+	money2=money1*monthrate*m/(m-1);
+	System.out.println("若银行贷款，每月还款数目为："+money2 );
+	}
+	}
+	}
