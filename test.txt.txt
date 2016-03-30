@@ -1,0 +1,54 @@
+package fulijisuantest;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class test {
+    @Test
+    public void testqiuzonge() {
+        double result =new fulijisuan().calculationzonge(1000,30,0.03);
+		boolean flag = 2427==result;
+	 assertEquals(false, flag);
+    }
+    @Test
+    public void testqiubenjin(){
+    	double result =new fulijisuan().calculationbenjin(2427, 30, 0.03);
+    	boolean flag =1000==result;
+    	assertEquals(false, flag);
+    }
+    @Test
+    public void testqiulilv(){
+    	double result =new fulijisuan().calculaterate(1000, 30, 2427);
+    	boolean flag =0.03==result;
+    	assertEquals(false, flag);
+    }
+    @Test
+    public void testqiunianqi(){
+    	double result =new fulijisuan().calculatenianqi(1000, 0.03, 2427);
+    	boolean flag =30==result;
+    	assertEquals(false, flag);
+    }
+    @Test
+    public void testqiumoneyandrate(){
+    	double result =new fulijisuan().calculatemoneyandrate(1000, 0.03, 30);
+    	boolean flag =2427==result;
+    	assertEquals(false, flag);
+    }
+    @Test
+    public void testqiumoney(){
+    	double result =new fulijisuan().calculatemoney(1000, 0.03, 30);
+    	boolean flag =30900==result;
+    	assertEquals(true, flag);
+    }
+    @Test
+    public void testqiudaikuan(){
+    	double result =new fulijisuan().calculatedaikuan(1000, 0.03, 30);
+    	boolean flag =4==result;
+    	assertEquals(false, flag);
+    }
+    
+    
+
+}
