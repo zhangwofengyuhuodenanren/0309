@@ -1,0 +1,55 @@
+package fulijisan;
+
+public class calculate {
+
+	public double calculatezongefuli(double money, double rate, double years) {
+		double Finally;
+		Finally = money * (Math.pow((1 + rate ), years ));
+		return Finally;
+	}
+	
+	public double calculatezongedanli(double money, double rate, double years) {
+			double Finally;
+			Finally = money * (1 + rate * years);
+			return Finally;
+	}
+	
+	public double calculatebenjin(double rate, double years, double Finally) {
+		double money;
+		money = Finally / Math.pow((1 + rate), years);
+		return money;
+	}
+	
+	public double calculatenianqi(double money, double rate, double Finally) {
+		double years;
+		years = Math.log((double) (Finally / money))/(Math.log((double) (1 + rate)));
+		return years;
+	}
+	
+	public double calculaterate(double money, double years, double Finally) {
+		double rate;
+		rate = (Math.pow(Finally / money, 1.0 / years)) - 1;
+		return rate;
+	}
+	
+	public double calculatemoneyandrate(double money,double rate,double years){
+		double Finally;
+		for (int j = 0; j < years; j++) {
+			money += money * rate;
+		}
+		Finally = money;
+		return Finally;
+	}
+	
+	public double calculatemoney(double money,double rate,double years){
+		double Finally;
+		Finally=money * (1 + rate) * years;
+		return 	Finally;	
+	}
+	
+	public double calculatedaikuan(double money, double rate, double years) {
+		double Finally;
+		Finally = money *  (((rate / 12) * (Math.pow(1 + rate / 12, years * 12))) / (Math.pow((1 + rate / 12), years * 12) - 1));
+		return Finally;
+	}
+}

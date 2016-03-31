@@ -1,0 +1,341 @@
+package fulijisan;
+
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class fulijisuan1 extends Applet  implements ActionListener, MouseListener,
+ItemListener {
+	
+	
+	
+	static JTextField jTextmoney = new JTextField();
+	
+	static JTextField jTextrate = new JTextField();
+	
+	static JTextField jTextyears = new JTextField();
+	
+	static JTextField jTextfinally = new JTextField();
+	
+	static JTextField jTextResult = new JTextField();
+	
+	static JLabel jLabletitle = new JLabel("复利计算器");
+	
+	static JLabel jLablemoney = new JLabel("本金");
+	
+	static JLabel jLablerate = new JLabel("利率");
+	
+	static JLabel jLableyears = new JLabel("年期");
+
+	static JLabel jLablefinally = new JLabel("终值");
+	
+	JLabel jLableResult = new JLabel("结果");
+	
+	static calculate calculate = new calculate();
+	
+	Button b1 = new Button("确认");
+
+	Button b2 = new Button("清除");
+
+	Checkbox ckbHB[] = new Checkbox[8]; 
+
+	CheckboxGroup ckgHB = new CheckboxGroup(); 
+
+	public void init() //初始化，堆砌界面
+	{ 
+		setLayout(null);    //不设布局管理器
+
+		setBackground(new Color(255, 250, 150));
+		
+		addMouseListener(this);//将本类作为鼠标事件的接口响应鼠标动作
+		add(b1); //将事先定义好的第一个按钮添加入界面
+		b1.setBounds(350, 350, 100, 50); //设置第一个按钮左上角的位置和大小
+		b1.addActionListener(this);//将本类作为按钮事件的接口响应按钮动作
+		
+		add(b2);
+		b2.setBounds(350, 400, 100, 50);
+		b2.addActionListener(this);
+		
+		add(jTextmoney);	
+		jTextmoney.setBounds(100, 140, 220, 30);
+		jTextmoney.addActionListener(this);
+		
+		add(jTextrate);
+		jTextrate.setBounds(100, 190, 220, 30);
+		jTextrate.addActionListener(this);
+		
+		add(jTextyears);
+		jTextyears.setBounds(100, 240, 220, 30);
+		jTextyears.addActionListener(this);
+		
+		add(jTextfinally);
+		jTextfinally.setBounds(100, 290, 220, 30);
+		jTextfinally.addActionListener(this);
+		
+		add(jTextResult);
+		jTextResult.setBounds(100, 340, 220, 30);
+		jTextResult.addActionListener(this);
+		
+		add(jLabletitle);
+		jLabletitle.setBounds(100, 30, 200, 50);
+		jLabletitle.setForeground(Color.red);
+		jLabletitle.setFont(new Font("微软雅黑", Font.BOLD, 30));
+		
+		
+		
+		add(jLablemoney);
+		jLablemoney.setBounds(50, 140, 30, 30);
+		
+		add(jLablerate);
+		jLablerate.setBounds(50, 190, 30, 30);
+	
+		
+		add(jLableyears);
+		jLableyears.setBounds(50, 240, 30, 30);
+	
+		
+		add(jLablefinally);
+		jLablefinally.setBounds(50, 290, 30, 30);
+		
+		
+		add(jLableResult);
+		jLableResult.setBounds(50, 340, 30, 30);
+		
+		
+		jTextResult.setEditable(false);
+		
+		ckbHB[0] = new Checkbox("求总额复利", ckgHB, false);
+		ckbHB[0].setBounds(350, 20, 100, 40); 
+		ckbHB[1] = new Checkbox("求总额单利", ckgHB, false);
+		ckbHB[1].setBounds(350, 60, 100, 40);
+		ckbHB[2] = new Checkbox("求本金", ckgHB, false);
+		ckbHB[2].setBounds(350, 100, 100, 40);
+		ckbHB[3] = new Checkbox("求年期",ckgHB,false);
+		ckbHB[3].setBounds(350, 140, 100, 40);
+		ckbHB[4] = new Checkbox("求利率", ckgHB, false);
+		ckbHB[4].setBounds(350, 180, 100, 40); 
+		ckbHB[5] = new Checkbox("若连本带利投资，最后得到的资产总值", ckgHB, false);
+		ckbHB[5].setBounds(350, 220, 100, 40);
+		ckbHB[6] = new Checkbox("若投资本金每年不变，最后得到的资产总值",ckgHB,false);
+		ckbHB[6].setBounds(350, 260, 100, 40);
+		ckbHB[7] = new Checkbox("银行贷款",ckgHB,false);
+		ckbHB[7].setBounds(350, 300, 100, 40);
+		add(ckbHB[0]);
+		add(ckbHB[1]);
+		add(ckbHB[2]);
+		add(ckbHB[3]);
+		add(ckbHB[4]);
+		add(ckbHB[5]);
+		add(ckbHB[6]);
+		add(ckbHB[7]);
+		ckbHB[0].addItemListener(this); 
+		ckbHB[1].addItemListener(this);
+		ckbHB[2].addItemListener(this); 
+		ckbHB[3].addItemListener(this);
+		ckbHB[4].addItemListener(this); 
+		ckbHB[5].addItemListener(this);
+		ckbHB[6].addItemListener(this);
+		ckbHB[7].addItemListener(this); 
+		
+		this.resize(new Dimension(520,500));
+
+	}
+	
+	public void enable(boolean e) 
+	{
+		// 设置组件状态
+		b1.setEnabled(e);
+		b2.setEnabled(e);
+		ckbHB[0].setEnabled(e);
+		ckbHB[1].setEnabled(e);
+		ckbHB[2].setEnabled(e);
+		ckbHB[3].setEnabled(e);
+		ckbHB[4].setEnabled(e);
+		ckbHB[5].setEnabled(e);
+		ckbHB[6].setEnabled(e);
+		ckbHB[7].setEnabled(e);
+		
+	}
+	public static void reducingState(){
+		//清除文本框的值
+	jTextmoney.setVisible(true);
+	jLablemoney.setVisible(true);
+	jTextrate.setVisible(true);
+	jLablerate.setVisible(true);
+	jTextyears.setVisible(true);
+	jLableyears.setVisible(true);
+	jTextfinally.setVisible(true);
+	jLablefinally.setVisible(true);
+	}
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		// 做完选择后的变化
+		if (ckbHB[0].getState()) {
+			fulijisuan1.reducingState();
+			jTextfinally.setVisible(false);
+			jLablefinally.setVisible(false);
+		}
+		else if(ckbHB[1].getState()) {
+			fulijisuan1.reducingState();
+			jTextfinally.setVisible(false);
+			jLablefinally.setVisible(false);
+		}
+		else if(ckbHB[2].getState()) {
+			fulijisuan1.reducingState();
+			jTextmoney.setVisible(false);
+			jLablemoney.setVisible(false);
+		}
+		else if(ckbHB[3].getState()) {
+			fulijisuan1.reducingState();
+			jTextyears.setVisible(false);
+			jLableyears.setVisible(false);
+		}
+		else if(ckbHB[4].getState()) {
+			fulijisuan1.reducingState();
+			jTextrate.setVisible(false);
+			jLablerate.setVisible(false);
+		}
+		else if(ckbHB[5] .getState()) {
+			fulijisuan1.reducingState();
+			jTextfinally.setVisible(false);
+			jLablefinally.setVisible(false);
+		}
+		else if(ckbHB[6] .getState()) {
+			fulijisuan1.reducingState();
+			jTextfinally.setVisible(false);
+			jLablefinally.setVisible(false);
+		}
+		else if(ckbHB[7] .getState()) {
+			fulijisuan1.reducingState();
+			jTextfinally.setVisible(false);
+			jLablefinally.setVisible(false);
+		}
+		
+	
+	}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+	
+	}
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// 确定后显示结果和清除文本框的值
+		if (e.getSource() == b1) 
+		{  
+				double money = 0;
+				double rate = 0;
+				double years = 0;
+				double Finally = 0;
+				try {
+					jTextResult.setText("");
+					if (ckbHB[0] .getState()) {
+						// 总额复利
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = calculate.calculatezongefuli(money, rate, years);
+						jTextResult.setText(Double.toString(Finally));
+						
+					}  else if (ckbHB[1] .getState()) {
+						// 总额单利
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = calculate.calculatezongedanli(money, rate, years);
+						jTextResult.setText(Double.toString(Finally));
+						
+					}else if (ckbHB[2].getState()) {
+						// 本金
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = Double.valueOf(jTextfinally.getText().toString()).doubleValue();
+						money = calculate.calculatebenjin(rate, years, Finally);
+						jTextResult.setText(Double.toString(money));
+						
+					} else if (ckbHB[3] .getState()) {
+						// 期限
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						Finally = Double.valueOf(jTextfinally.getText().toString()).doubleValue();
+						years = calculate.calculatenianqi(money, rate, Finally);
+						jTextResult.setText(Double.toString(years));
+						
+					} else if (ckbHB[4] .getState()) {
+						// 利率
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = Double.valueOf(jTextfinally.getText().toString()).doubleValue();
+						rate = calculate.calculaterate(money, years, Finally);
+						jTextResult.setText(Double.toString(rate));
+					} else if (ckbHB[5] .getState()) {
+						// 若连本带利投资，最后得到的资产总值
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = calculate.calculatemoneyandrate(money, rate, years);
+						jTextResult.setText(Double.toString(Finally));
+					} else if (ckbHB[6] .getState()) {
+						// 若投资本金每年不变，最后得到的资产总值
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = calculate.calculatemoney(money, rate, years);
+						jTextResult.setText(Double.toString(Finally));
+						
+					}else if (ckbHB[7] .getState()) {
+						// 银行贷款
+						money = Double.valueOf(jTextmoney.getText().toString()).doubleValue();
+						rate = Double.valueOf(jTextrate.getText().toString()).doubleValue();
+						years = Double.valueOf(jTextyears.getText().toString()).doubleValue();
+						Finally = calculate.calculatedaikuan(money, rate, years);
+						jTextResult.setText(Double.toString(Finally));
+						
+					}
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "未输入正确的数据！", "错误提示",
+							JOptionPane.ERROR_MESSAGE);
+					System.out.println(e1);
+				}
+			} 
+	
+		
+		if (e.getSource() == b2)
+		{
+			jTextfinally.setText("");
+			jTextmoney.setText("");
+			jTextrate.setText("");
+			jTextyears.setText("");
+			jTextResult.setText("");
+		}
+	}
+	}
